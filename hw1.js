@@ -44,11 +44,13 @@ const Homework1 = class Homework1 {
 
 const Circle = class Circle { 
 
+    // Constructor using specified fields
     constructor(radius, color) {
         this.radius = radius;
         this.color = color;
     }
         
+    // Method to calculate the area of the circle
     calcArea() {
         return this.radius * this.radius * Math.PI;
     }
@@ -75,11 +77,13 @@ const Circle = class Circle {
 
 const Student = class Student { 
 
+    // Constructor using specified fields
     constructor(firstName, lastName, gpa, degreeType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gpa = gpa;
         this.degreeType = degreeType;
+        // 2 fields set within constructor without parameters
         this.grade = undefined;
         this.graduated = false;
     }
@@ -101,8 +105,10 @@ const Student = class Student {
 
 const Product = class Product {
 
+    // Constructor using specified field
     constructor(input) {
 
+        // Split the input string
         const params = input.split(',');
 
         this.name = params[0];
@@ -121,6 +127,7 @@ const Product = class Product {
      * This can be implmeneted in one line.
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
      */
+    // Method using array filter to return only available products
     static inStock = (products) => products.filter((prod) => prod.availability === "In Stock");
 
 
@@ -135,6 +142,7 @@ const Product = class Product {
      * This method can also be written in one line; if doing so, consider using String interpolation when calling the product constructor
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
      */
+    // Method using array map to return a new array with the price reduced by 50%
     static halfOff = (products) => products.map((prod) => new Product(`${prod.name},${prod.price*0.5},${prod.availability}`));
 
     /**
@@ -150,14 +158,18 @@ const Product = class Product {
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat (currency formatting)
      */
+    // Method using array forEach to print out each product info
     static printProducts = (products) => 
         products.forEach((prod) => {
 
-           let p = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(prod.price);
+            // Format the price correctly
+            let p = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(prod.price);
 
-           let a = 'No';
-           if(prod.availability === 'In Stock') {a = 'Yes'};
+            // Check if product is available or not and set yes or no value
+            let a = 'No';
+            if(prod.availability === 'In Stock') {a = 'Yes'};
 
+            // Print product details
             console.log(`Product: ${prod.name}, Cost: ${p}, Availability: ${a}`)
         });
     
